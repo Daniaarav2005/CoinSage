@@ -1,4 +1,5 @@
 import requests
+import pytz
 import datetime
 
 # Define the date range
@@ -32,6 +33,6 @@ filtered_data = [price for price in data['Data']['Data']
 
 # Display the prices for the given date range
 for price in filtered_data:
-    timestamp = datetime.datetime.fromtimestamp(price['time'], tz=datetime.timezone.utc)
+    timestamp = datetime.datetime.fromtimestamp(price['time'], pytz.timezone('Asia/Kolkata'))
     date_str = timestamp.strftime("%Y-%m-%d %H:%M:%S UTC")
     print(f"Date: {date_str}, Open: ${price['open']:.4f}, High: ${price['high']:.4f}, Low: ${price['low']:.4f}, Close: ${price['close']:.4f}")
